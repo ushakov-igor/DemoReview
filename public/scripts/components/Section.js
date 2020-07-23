@@ -6,12 +6,15 @@ export default class Section {
     this._container = containerSelector;
   }
 
+  //отрисовка элементов
   render() {
-
+    this._items.forEach((item) => {
+      this._renderer(item)
+    });
   }
 
-  addItem() {
-
+  //добавление DOM-элемента в контейнер
+  addItem(element) {
+    this._container.prepend(element);
   }
 }
-

@@ -36,7 +36,6 @@ export const imageModalWindow = document.querySelector('.popup_type_image');
 export const imageElement = imageModalWindow.querySelector('.popup__image');
 export const imageCaption = imageModalWindow.querySelector('.popup__caption');
 
-
 // С submit ребята еще плохо работают.
 
 // Кнопки и прочие дом узлы

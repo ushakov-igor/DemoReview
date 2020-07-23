@@ -12,8 +12,6 @@ import {
   cardSelector,
 } from './constants.js';
 
-import Card from '../components/Card.js';
-
 export const isEscEvent = (evt, action) => {
   const activePopup = document.querySelector('.popup_is-opened');
   if (evt.which === ESC_KEYCODE) {
@@ -29,11 +27,6 @@ export const openModalWindow = (modalWindow) => {
 export const closeModalWindow = (modalWindow) => {
   modalWindow.classList.remove('popup_is-opened');
   document.removeEventListener('keyup', handleEscUp);
-};
-
-export const renderCard = (data, wrap) => {
-  const card = new Card(data, cardSelector);
-  wrap.prepend(card.getView());
 };
 
 export const handleEscUp = (evt) => {

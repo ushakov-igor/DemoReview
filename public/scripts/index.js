@@ -1,4 +1,6 @@
 import FormValidator from './components/FormValidator.js';
+import Section from './components/Section.js';
+import Card from './components/Card.js';
 
 import {
   initialCards,
@@ -12,13 +14,13 @@ import {
   profileDescription,
   titleInputValue,
   descriptionInputValue,
+  cardSelector,
   defaultFormConfig,
 } from './utils/constants.js';
 
 import {
   openModalWindow,
   closeModalWindow,
-  renderCard,
   formSubmitHandler,
   cardFormSubmitHandler,
 } from './utils/utils.js';
@@ -54,12 +56,22 @@ imageModalWindow.addEventListener('click', (evt) => {
 });
 
 // Инициализация
-initialCards.forEach((data) => {
-  renderCard(data, placesWrap)
-});
+const cardList = new Section({
+  items: initialCards,
+  renderer: (cardItem) => {
+    const card = new Card(cardItem, cardSelector);
+    const cardElement = card.getView();
+    cardList.addItem(cardElement);
+  },
+},
+placesWrap
+);
 
 const editFormValidator = new FormValidator(defaultFormConfig, editFormModalWindow);
 const cardFormValidator = new FormValidator(defaultFormConfig, cardFormModalWindow);
 
+cardList.render(initialCards);
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+
+
