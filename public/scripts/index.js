@@ -16,10 +16,16 @@ import {
   cardSelector,
   defaultFormConfig,
   profileTitle,
-   profileDescription
+   profileDescription,
+   titleInputValue,
+   descriptionInputValue
 } from './utils/constants.js';
 
 // Инициализация классов
+const user = new UserInfo({
+  nameSelector: profileTitle,
+  descriptionSelector: profileDescription });
+
 const cardList = new Section({
   items: initialCards,
   renderer: (cardItem) => {
@@ -58,10 +64,6 @@ const cardPopupWithForm = new PopupWithForm(cardFormModalWindow, {
 
 const editPopupWithForm = new PopupWithForm(editFormModalWindow, {
   submitCallback: (formData) => {
-    console.log(formData);
-    const user = new UserInfo({
-      nameSelector: profileTitle,
-      descriptionSelector: profileDescription });
     user.setUserInfo(formData);
     editPopupWithForm.close();
   }
@@ -83,5 +85,9 @@ openCardFormButton.addEventListener('click', () => {
 });
 
 openEditFormButton.addEventListener('click', () => {
+  const userInfo = user.getUserInfo();
+  titleInputValue.value = userInfo.name;
+  descriptionInputValue.value = userInfo.description;
+
   editPopupWithForm.open();
 });

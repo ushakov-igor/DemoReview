@@ -19,7 +19,7 @@ export default class Popup {
   }
 
   _handleEscClose(event) {
-    if (event.keyCode === ESC_KEYCODE || event.target.classList.contains('.popup')) {
+    if (event.keyCode === ESC_KEYCODE || event.target.classList.contains('popup')) {
       event.preventDefault();
       this.close();
     }
