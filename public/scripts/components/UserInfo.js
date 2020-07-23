@@ -1,4 +1,4 @@
-class UserInfo {
+export default class UserInfo {
   constructor({nameSelector, infoSelector}) {
     this._userName = nameSelector;
     this._userInfo = infoSelector;
@@ -13,5 +13,3 @@ class UserInfo {
   }
 
 }
-
-export default UserInfo;

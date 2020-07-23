@@ -8,7 +8,7 @@ import {
   handleEscUp,
 } from '../utils/utils.js';
 
-class Card {
+export default class Card {
   constructor(data, cardSelector) {
     this._text = data.name;
     this._link = data.link;
@@ -74,4 +74,3 @@ class Card {
   }
 }
 
-export default Card;

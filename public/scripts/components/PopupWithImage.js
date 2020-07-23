@@ -1,6 +1,6 @@
 import Popup from './Popup';
 
-class PopupWithImage extends Popup {
+export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
   }
@@ -10,4 +10,3 @@ class PopupWithImage extends Popup {
   }
 }
 
-export default PopupWithImage;
