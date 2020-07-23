@@ -1,6 +1,8 @@
-import FormValidator from './components/FormValidator.js';
 import Section from './components/Section.js';
 import Card from './components/Card.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import FormValidator from './components/FormValidator.js';
 
 import {
   initialCards,
@@ -8,58 +10,24 @@ import {
   editFormModalWindow,
   cardFormModalWindow,
   imageModalWindow,
-  openEditFormButton,
   openCardFormButton,
-  profileTitle,
-  profileDescription,
-  titleInputValue,
-  descriptionInputValue,
   cardSelector,
   defaultFormConfig,
 } from './utils/constants.js';
 
-import {
-  openModalWindow,
-  closeModalWindow,
-  formSubmitHandler,
-  cardFormSubmitHandler,
-} from './utils/utils.js';
-
-// EventListeners
-editFormModalWindow.addEventListener('submit', formSubmitHandler);
-cardFormModalWindow.addEventListener('submit', cardFormSubmitHandler);
-
-openEditFormButton.addEventListener('click', () => {
-  titleInputValue.value = profileTitle.textContent;
-  descriptionInputValue.value = profileDescription.textContent;
-  openModalWindow(editFormModalWindow);
-});
-
-openCardFormButton.addEventListener('click', () => {
-  openModalWindow(cardFormModalWindow);
-});
-
-editFormModalWindow.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closeModalWindow(editFormModalWindow);
-  }
-});
-cardFormModalWindow.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closeModalWindow(cardFormModalWindow);
-  }
-});
-imageModalWindow.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closeModalWindow(imageModalWindow);
-  }
-});
-
-// Инициализация
+// Инициализация классов
 const cardList = new Section({
   items: initialCards,
   renderer: (cardItem) => {
-    const card = new Card(cardItem, cardSelector);
+    const card = new Card({
+      data: cardItem,
+      handleCardClick: () => {
+        const popupWithImage = new PopupWithImage(imageModalWindow);
+        popupWithImage.open(cardItem);
+        popupWithImage.setEventListeners();
+      }
+    }, cardSelector);
+
     const cardElement = card.getView();
     cardList.addItem(cardElement);
   },
@@ -67,11 +35,33 @@ const cardList = new Section({
 placesWrap
 );
 
+const cardPopupWithForm = new PopupWithForm(cardFormModalWindow, {
+  submitCallback: (formData) => {
+    const card = new Card({
+      data: formData,
+      handleCardClick: () => {
+        const popupWithImage = new PopupWithImage(imageModalWindow);
+        popupWithImage.open(cardItem);
+        popupWithImage.setEventListeners();
+      }
+    }, cardSelector);
+
+    const cardElement = card.getView();
+    cardList.addItem(cardElement);
+    cardPopupWithForm.close();
+  },
+});
+
 const editFormValidator = new FormValidator(defaultFormConfig, editFormModalWindow);
 const cardFormValidator = new FormValidator(defaultFormConfig, cardFormModalWindow);
 
+// вызовы методов классов
 cardList.render(initialCards);
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+cardPopupWithForm.setEventListeners();
 
-
+// EventListeners
+openCardFormButton.addEventListener('click', () => {
+  cardPopupWithForm.open();
+});

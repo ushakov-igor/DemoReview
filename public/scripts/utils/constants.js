@@ -33,10 +33,6 @@ export const placesWrap = document.querySelector('.places__list');
 export const editFormModalWindow = document.querySelector('.popup_type_edit');
 export const cardFormModalWindow = document.querySelector('.popup_type_new-card');
 export const imageModalWindow = document.querySelector('.popup_type_image');
-export const imageElement = imageModalWindow.querySelector('.popup__image');
-export const imageCaption = imageModalWindow.querySelector('.popup__caption');
-
-// С submit ребята еще плохо работают.
 
 // Кнопки и прочие дом узлы
 export const openEditFormButton = document.querySelector('.profile__edit-button');
