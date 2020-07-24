@@ -1,3 +1,5 @@
+import './index.css';
+
 import Section from '../scripts/components/Section.js';
 import Card from '../scripts/components/Card.js';
 import UserInfo from '../scripts/components/UserInfo.js';
@@ -47,7 +49,6 @@ placesWrap
 
 const cardPopupWithForm = new PopupWithForm(cardFormModalWindow, {
   submitCallback: (formData) => {
-    console.log(formData);
     const card = new Card({
       data: formData,
       handleCardClick: () => {
