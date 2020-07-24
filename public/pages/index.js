@@ -1,9 +1,9 @@
-import Section from './components/Section.js';
-import Card from './components/Card.js';
-import UserInfo from './components/UserInfo.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import FormValidator from './components/FormValidator.js';
+import Section from '../scripts/components/Section.js';
+import Card from '../scripts/components/Card.js';
+import UserInfo from '../scripts/components/UserInfo.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import FormValidator from '../scripts/components/FormValidator.js';
 
 import {
   initialCards,
@@ -11,15 +11,15 @@ import {
   editFormModalWindow,
   cardFormModalWindow,
   imageModalWindow,
-  openCardFormButton,
   openEditFormButton,
+  openCardFormButton,
+  profileTitle,
+  profileDescription,
+  titleInputValue,
+  descriptionInputValue,
   cardSelector,
   defaultFormConfig,
-  profileTitle,
-   profileDescription,
-   titleInputValue,
-   descriptionInputValue
-} from './utils/constants.js';
+} from '../scripts/utils/constants.js';
 
 // Инициализация классов
 const user = new UserInfo({
@@ -73,7 +73,7 @@ const editPopupWithForm = new PopupWithForm(editFormModalWindow, {
 const editFormValidator = new FormValidator(defaultFormConfig, editFormModalWindow);
 const cardFormValidator = new FormValidator(defaultFormConfig, cardFormModalWindow);
 
-// вызовы методов классов
+// Вызовы методов классов
 cardList.render(initialCards);
 cardPopupWithForm.setEventListeners();
 editPopupWithForm.setEventListeners();
