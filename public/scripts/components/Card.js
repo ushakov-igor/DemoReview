@@ -38,7 +38,6 @@ export default class Card {
   }
 
   getView() {
-    // Публичный метод, возвращающий представление карточки;
     this._element = this._getTemplate();
     this._setEventListeners();
 

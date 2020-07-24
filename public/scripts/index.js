@@ -47,11 +47,12 @@ placesWrap
 
 const cardPopupWithForm = new PopupWithForm(cardFormModalWindow, {
   submitCallback: (formData) => {
+    console.log(formData);
     const card = new Card({
       data: formData,
       handleCardClick: () => {
         const popupWithImage = new PopupWithImage(imageModalWindow);
-        popupWithImage.open(cardItem);
+        popupWithImage.open(formData);
         popupWithImage.setEventListeners();
       }
     }, cardSelector);
@@ -74,13 +75,12 @@ const cardFormValidator = new FormValidator(defaultFormConfig, cardFormModalWind
 
 // вызовы методов классов
 cardList.render(initialCards);
-editFormValidator.enableValidation();
-cardFormValidator.enableValidation();
 cardPopupWithForm.setEventListeners();
 editPopupWithForm.setEventListeners();
 
 // EventListeners
 openCardFormButton.addEventListener('click', () => {
+  cardFormValidator.enableValidation();
   cardPopupWithForm.open();
 });
 
@@ -88,6 +88,6 @@ openEditFormButton.addEventListener('click', () => {
   const userInfo = user.getUserInfo();
   titleInputValue.value = userInfo.name;
   descriptionInputValue.value = userInfo.description;
-
+  editFormValidator.enableValidation();
   editPopupWithForm.open();
 });

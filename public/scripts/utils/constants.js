@@ -45,9 +45,6 @@ export const profileDescription = document.querySelector('.profile__description'
 // Данные форм и элементы форм
 export const titleInputValue = editFormModalWindow.querySelector('.popup__input_type_name');
 export const descriptionInputValue = editFormModalWindow.querySelector('.popup__input_type_description');
-export const cardNameInputValue = cardFormModalWindow.querySelector('.popup__input_type_card-name');
-export const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type_url');
-// решение на минималках. Конечно, студент может корректно обобрать велью инпутов в форме.
 
 export const cardSelector = '.card-template';
 export const defaultFormConfig = {
