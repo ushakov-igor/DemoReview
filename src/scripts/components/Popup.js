@@ -19,6 +19,12 @@ export default class Popup {
   }
 
   _handleEscClose(event) {
+    /* Надо исправить: модальное окно не закрывается если нажать по оверлею
+       Молодец, проверка класса popup сделана верно и как раз для этого, однако событие keyup
+       относится к KeyboardEvent и реагирует только на нажатия по клавишам клавиатуры
+       следует посмотреть в сторону MouseEvent: https://developer.mozilla.org/ru/docs/Web/API/MouseEvent
+       Но не забыть обрабатывать также и keyup для кнопки ESC  
+    */
     if (event.keyCode === ESC_KEYCODE || event.target.classList.contains('popup')) {
       event.preventDefault();
       this.close();

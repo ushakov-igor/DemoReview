@@ -8,6 +8,10 @@ export default class PopupWithForm extends Popup {
     this._form = this._popup.querySelector('.popup__form');
   }
 
+  /* Можно лучше: В методе _getInputValues не обязательно использовать this, это создаст два новых приватных поля в классе
+     которые не используются нигде вне этого метода. Достаточно использовать const/let, тогда в класс не будут
+     добавлены новые поля
+  */
   _getInputValues() {
     this._inputList = this._form.querySelectorAll('.popup__input');
 

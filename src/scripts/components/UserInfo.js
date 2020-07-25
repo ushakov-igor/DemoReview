@@ -5,6 +5,7 @@ export default class UserInfo {
   }
 
   getUserInfo() {
+    // Можно было бы сразу возвращать объект, без создания новой переменной в памяти
     const userInfo = {
       name: this._userName.textContent,
       description: this._userDescription.textContent
